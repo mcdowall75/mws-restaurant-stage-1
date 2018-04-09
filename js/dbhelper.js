@@ -147,6 +147,13 @@ class DBHelper {
   }
 
   /**
+   * Restaurant id.
+   */
+  static restaurantId(restaurant) {
+    return (`${restaurant.id}`);
+  }
+
+  /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
