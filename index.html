@@ -10,6 +10,8 @@
 </head>
 
 <body>
+  <a id="top"></a>
+  <a href="#maincontent" class="skip">Skip to content</a>
   <header>
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
@@ -27,21 +29,22 @@
           <option value="all">All Cuisines</option>
         </select>
       </div>
-      <ul id="restaurants-list"></ul>
+      <ul id="restaurants-list" tabindex="1"></ul>
     </section>
     <section id="map-container">
       <div id="map"></div>
     </section>
   </main>
 
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js" type="text/javascript"></script>
+  <script type="application/javascript" charset="utf-8" src="js/main.js" type="text/javascript"></script>></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE6uMfJxFY9le-7QjxlgPuf4TrWEONEak&libraries=places&callback=initMap"></script>
 
 
   <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    Copyright (c) 2017 <a href="/" aria-label="Return to restaurants"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
+  <a href="#top" aria-label="Return to top"></a>
 
 </body>
 

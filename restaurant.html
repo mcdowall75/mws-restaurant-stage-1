@@ -12,6 +12,8 @@
 </head>
 
 <body class="inside">
+  <a id="top"></a>
+  <a href="#restaurant-container" class="skip" tabindex="1">Skip to content</a>
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
@@ -35,7 +37,7 @@
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <section id="restaurant-container" role="contentinfo" aria-label="Restaurant Information">
       <h1 id="restaurant-name"></h1>
       <img id="restaurant-img">
       <p id="restaurant-cuisine"></p>
@@ -44,7 +46,7 @@
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
-    <section id="reviews-container">
+    <section id="reviews-container" role="contentinfo" aria-label="Restaurant Reviews">
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
@@ -53,8 +55,9 @@
 
   <!-- Beginning footer -->
   <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    Copyright (c) 2017 <a href="/" aria-label="Return to restaurants"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
+  <a href="#top" aria-label="Return to top"></a>
   <!-- End footer -->
 
   <!-- Beginning scripts -->

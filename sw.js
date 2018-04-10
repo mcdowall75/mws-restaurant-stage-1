@@ -30,7 +30,7 @@ this.addEventListener('fetch', function (event) {
     caches.match(event.request, {ignoreSearch: true}).then(function (response) {
       return response || fetch(event.request).then(function (response) {
         // iF event request is a jpg clone and cache
-        if (event.request.url.endsWith(".jpg")) {
+        if (event.request.url.endsWith(".jpg") || event.request.url.endsWith(".webp")) {
           var responseToCache = response.clone();
           caches.open(CACHE_NAME).then(function(cache) {
             cache.put(event.request, responseToCache);

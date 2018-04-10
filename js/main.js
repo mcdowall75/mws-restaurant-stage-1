@@ -137,15 +137,22 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
+  li.tabIndex = 1;
 
   const picture = document.createElement('picture');
   const src1 = document.createElement('source');
-  src1.srcset= "/img/"+DBHelper.restaurantId(restaurant)+"-small_x2.jpg 2x, /img/"+DBHelper.restaurantId(restaurant)+"-small.jpg"
+  src1.srcset = "/img/"+DBHelper.restaurantId(restaurant)+"-small_x2.webp 2x, /img/"+DBHelper.restaurantId(restaurant)+"-small.webp"
+  src1.type = "image/webp"
   picture.append(src1);
+  const src2 = document.createElement('source');
+  src2.srcset = "/img/"+DBHelper.restaurantId(restaurant)+"-small_x2.jpg 2x, /img/"+DBHelper.restaurantId(restaurant)+"-small.jpg"
+  src2.type = "image/jpeg"
+  picture.append(src2);
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = "/img/"+DBHelper.restaurantId(restaurant)+"-small.jpg";
-  image.alt = "";
+  const restName = restaurant.name;
+  image.alt = `photo of ${restName} restaurant`;
   picture.append(image);
   li.append(picture);
 
