@@ -57,19 +57,19 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-transform: uppercase;
 }
 /* ====================== Navigation ====================== */
-nav {
+.topnav {
   width: 100%;
   height: 80px;
   background-color: #252831;
   text-align:center;
 }
-nav h1 {
+.topnav h1 {
   margin: auto;
   line-height: 80px;
   white-space: nowrap;
   overflow: hidden;
 }
-nav h1 a {
+.topnav h1 a {
   color: #fff;
   font-size: 14pt;
   font-weight: 200;
@@ -207,7 +207,7 @@ nav h1 a {
   object-fit: cover;
 }
 
-#restaurants-list li h1 {
+#restaurants-list li h3 {
   color: #f18200;
   font-family: Arial,sans-serif;
   font-size: 14pt;
@@ -293,7 +293,7 @@ nav h1 a {
 #reviews-container {
   padding: 30px 40px 80px;
 }
-#reviews-container h2 {
+#reviews-container h3 {
   color: #f58500;
   font-size: 24pt;
   font-weight: 300;
