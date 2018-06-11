@@ -1,3 +1,72 @@
+  /**
+   * IndexDB Promises
+   */
+  function openDatabase() {
+    // If the browser doesn't support service worker,
+    // we don't care about having a database
+    if (!navigator.serviceWorker) {
+      return Promise.resolve();
+    }
+
+    return idb.open('wittr', 1, function(upgradeDb) {
+      var store = upgradeDb.createObjectStore('wittrs', {
+        keyPath: 'id'
+      });
+      store.createIndex('by-date', 'time');
+    });
+  }
+  function openDatabase() {
+    const dbPromise = idb.open('restaurants-db',2, function(upgradeDB) {
+      if (!upgradeDB.objectStoreNames.contains('restaurants')) {
+        upgradeDB.createObjectStore('restaurants');
+      }
+    });
+  }
+
+  const idbrestaurantval = {
+    get(restaurants) {
+      return dbPromise.then(db => {
+        return db.transaction('restaurants')
+          .objectStore('restaurants').get(restaurants);
+      });
+    },
+    set(restaurants, val) {
+      return dbPromise.then(db => {
+        const tx = db.transaction('restaurants', 'readwrite');
+        tx.objectStore('restaurants').put(val, restaurants);
+        return tx.complete;
+      });
+    },
+    delete(restaurants) {
+      return dbPromise.then(db => {
+        const tx = db.transaction('restaurants', 'readwrite');
+        tx.objectStore('restaurants').delete(restaurants);
+        return tx.complete;
+      });
+    },
+    clear() {
+      return dbPromise.then(db => {
+        const tx = db.transaction('restaurants', 'readwrite');
+        tx.objectStore('restaurants').clear();
+        return tx.complete;
+      });
+    },
+    keys() {
+      return dbPromise.then(db => {
+        const tx = db.transaction('restaurants');
+        const restaurants = [];
+        const store = tx.objectStore('restaurants');
+        (store.iterateKeyCursor || store.iterateCursor).call(store, cursor => {
+          if (!cursor) return;
+          restaurants.push(cursor.restaurant);
+          cursor.continue();
+        });
+
+        return tx.complete.then(() => restaurants);
+      });
+    }
+  };
+
 /**
  * Common database helper functions.
  */
@@ -7,9 +76,9 @@ class DBHelper {
    * Database URL.
    * Change this to restaurants.json file location on your server.
    */
-  static get DATABASE_URL() {
-    const port = 8000 // Change this to your server port
-    return `/data/restaurants.json`;
+    static get DATABASE_URL() {
+    const port = 1337 // Change this to your server port
+    return `http://localhost:${port}/restaurants`;
   }
 
   /**
@@ -20,8 +89,7 @@ class DBHelper {
     xhr.open('GET', DBHelper.DATABASE_URL);
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
-        const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
+        const restaurants = JSON.parse(xhr.responseText);
         callback(null, restaurants);
       } else { // Oops!. Got an error from server.
         const error = (`Request failed. Returned status of ${xhr.status}`);
@@ -157,7 +225,7 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    return (`/img/${restaurant.id}-large.webp`);
   }
 
   /**

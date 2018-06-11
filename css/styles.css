@@ -18,7 +18,7 @@ ul, li {
 	color: #333;
 }
 a {
-	color: orange;
+	color: #A85A00;
 	text-decoration: none;
 }
 a:hover, a:focus {
@@ -48,13 +48,17 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   order: 1;
 }
 #footer {
-  background-color: #444;
-  color: #aaa;
+  background-color: #252831;
+  color: #fff;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+}
+#footer a {
+	color: orange;
+	text-decoration: none;
 }
 /* ====================== Navigation ====================== */
 .topnav {
@@ -114,11 +118,26 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   width: 100%;
   background-color: #ccc;
 }
+.staticMap {
+  margin: auto;
+  width: 502px;
+  max-width: 100vw;
+}
+.staticMapImg {
+  background-color: #ccc;
+  display: block;
+  margin: 0;
+  max-width: 100%;
+  min-height: 397px;
+  min-width: 100%;
+  object-fit: cover;
+}
+
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
   height: 50px;
-  background-color: #3397DB;
+  background-color: #207AB6;
   align-items: center;
 }
 .filter-options h2 {
@@ -208,7 +227,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 }
 
 #restaurants-list li h3 {
-  color: #f18200;
+  color: #A85A00;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -223,7 +242,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   font-size: 11pt;
 }
 #restaurants-list li a {
-  background-color: orange;
+  background-color: #A85A00;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -255,7 +274,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   width: calc(100% - 50px)
 }
 #restaurant-name {
-  color: #f18200;
+  color: #A85A00;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -350,7 +369,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 .rating {
   width: 80px;
   border-radius: 5px;
-  background-color: #f18200;
+  background-color: #A85A00;
   margin: 20px 20px;
   padding: 10px;
   color: #fff;

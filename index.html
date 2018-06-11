@@ -4,8 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#3397DB">
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.min.css">
   <title>Restaurant Reviews</title>
 </head>
 
@@ -35,10 +37,10 @@
       <div id="map" role="application"></div>
     </section>
   </main>
-
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js" type="text/javascript"></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js" type="text/javascript"></script>></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE6uMfJxFY9le-7QjxlgPuf4TrWEONEak&libraries=places&callback=initMap"></script>
+  <script type="application/javascript" charset="utf-8" src="js/idb.min.js" type="text/javascript"></script>
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.min.js" type="text/javascript"></script>
+  <script type="application/javascript" charset="utf-8" src="js/main.min.js" type="text/javascript"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
 
   <footer id="footer">
