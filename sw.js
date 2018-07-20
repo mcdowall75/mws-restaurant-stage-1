@@ -14,6 +14,8 @@ var urlsToCache = [
   '/js/idb.js',
   '/img/network_wifi.svg',
   '/img/no_wifi.svg',
+  '/img/favorite-24px.svg',
+  '/img/favorite_border-24px.svg',
   'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
   'https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2'
 ];
@@ -57,7 +59,7 @@ self.addEventListener('fetch', function (event) {
     caches.match(event.request, {ignoreSearch: true}).then(function (response) {
       return response || fetch(event.request).then(function (response) {
         // iF event request is a jpg clone and cache
-        if (event.request.url.endsWith(".jpg") || event.request.url.endsWith(".webp") || event.request.url.endsWith(".png")) {
+        if (event.request.url.endsWith(".jpg") || event.request.url.endsWith(".webp") || event.request.url.endsWith(".png") || event.request.url.endsWith(".svg")) {
           var responseToCache = response.clone();
           caches.open(CACHE_NAME).then(function(cache) {
             cache.put(event.request, responseToCache);
