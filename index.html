@@ -6,16 +6,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#3397DB">
-  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <title>Restaurant Reviews</title>
 </head>
 
 <body>
   <a id="top"></a>
+  <!-- Review Modal -->
+  <div id="reviewModal" class="modal">
+  <!-- Modal content -->
+  <form name="reviewForm" method="post" id="reviewForm" onSubmit="return false">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="reviewHeader"></h2>
+      </div>
+      <div class="modal-body">
+
+          <div id="star_rating">
+          <input value="0" id="star0" checked
+          type="radio" name="rating" class="visuallyhidden">
+          <label for="star0">
+            <span class="visuallyhidden">0 Stars</span>
+            <svg viewBox="0 0 512 512">
+              <g stroke-width="70" stroke-linecap="square">
+                <path d="M91.5,442.5 L409.366489,124.633512"></path>
+                <path d="M90.9861965,124.986197 L409.184248,443.184248"></path>
+              </g>
+            </svg>
+          </label>
+
+          <input value="1" id="star1"
+            type="radio" name="rating" class="visuallyhidden">
+          <label for="star1">
+            <span class="visuallyhidden">1 Star</span>
+            <svg viewBox="0 0 512 512"><path d="M512 198.525l-176.89-25.704-79.11-160.291-79.108 160.291-176.892 25.704 128 124.769-30.216 176.176 158.216-83.179 158.216 83.179-30.217-176.176 128.001-124.769z"></path></svg>
+          </label>
+
+          <input value="2" id="star2"
+            type="radio" name="rating" class="visuallyhidden">
+          <label for="star2">
+            <span class="visuallyhidden">2 Stars</span>
+            <svg viewBox="0 0 512 512"><path d="M512 198.525l-176.89-25.704-79.11-160.291-79.108 160.291-176.892 25.704 128 124.769-30.216 176.176 158.216-83.179 158.216 83.179-30.217-176.176 128.001-124.769z"></path></svg>
+          </label>
+
+          <input value="3" id="star3"
+            type="radio" name="rating" class="visuallyhidden">
+          <label for="star3">
+            <span class="visuallyhidden">3 Stars</span>
+            <svg viewBox="0 0 512 512"><path d="M512 198.525l-176.89-25.704-79.11-160.291-79.108 160.291-176.892 25.704 128 124.769-30.216 176.176 158.216-83.179 158.216 83.179-30.217-176.176 128.001-124.769z"></path></svg>
+          </label>
+
+          <input value="4" id="star4"
+            type="radio" name="rating" class="visuallyhidden">
+          <label for="star4">
+            <span class="visuallyhidden">4 Stars</span>
+            <svg viewBox="0 0 512 512"><path d="M512 198.525l-176.89-25.704-79.11-160.291-79.108 160.291-176.892 25.704 128 124.769-30.216 176.176 158.216-83.179 158.216 83.179-30.217-176.176 128.001-124.769z"></path></svg>
+          </label>
+
+          <input value="5" id="star5"
+            type="radio" name="rating" class="visuallyhidden">
+          <label for="star5">
+            <span class="visuallyhidden">5 Stars</span>
+            <svg viewBox="0 0 512 512"><path d="M512 198.525l-176.89-25.704-79.11-160.291-79.108 160.291-176.892 25.704 128 124.769-30.216 176.176 158.216-83.179 158.216 83.179-30.217-176.176 128.001-124.769z"></path></svg>
+          </label>
+          </div>
+          <div>
+            <label class="formSubTitle" for="review">Your Review</label>
+            <textarea class="formField" id="review" name="review" rows="5"></textarea>
+          </div>
+          <div>
+              <label class="formSubTitle" for="name">Your Name</label>
+              <input class="formField" id="name" type="text" name="name">
+          </div>
+
+        </form>
+      </div>
+      <br>
+      <div class="modal-footer">
+        <button aria-label="Close review form" class="closeBtn btn close">Close</button>
+        <button type="submit" aria-label="Submit review" class="submitBtn btn">Submit</button>
+      </div>
+    </div>
+  </form>
+  </div>
+
   <a href="#maincontent" class="skip">Skip to content</a>
   <header>
     <nav class="topnav">
+      <img id="status" class="online" alt="Network status online">
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
   </header>
@@ -24,12 +104,15 @@
     <section id="list-container">
       <div class="filter-options">
         <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Select neighborhood">
+        <select class="btn selectBtn" id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Select neighborhood">
           <option value="all">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Select cuisine">
+        <select class="btn selectBtn" id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Select cuisine">
           <option value="all">All Cuisines</option>
         </select>
+        <div style="margin: 10px;">
+          <label id="favouritesSelect" class="btn selectBtn"><input type="checkbox" id="favourites-select" name="favourites"><img alt="Select Favourites" class="heart" style="vertical-align:middle" ><span>Favourites</span></label>
+        </div>
       </div>
       <ul id="restaurants-list" tabindex="0"></ul>
     </section>
@@ -40,7 +123,7 @@
   <script type="application/javascript" charset="utf-8" src="./js/idb.js" type="text/javascript"></script>
   <script type="application/javascript" charset="utf-8" src="./js/dbhelper.js" type="text/javascript"></script>
   <script type="application/javascript" charset="utf-8" src="./js/main.js" type="text/javascript"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE6uMfJxFY9le-7QjxlgPuf4TrWEONEak&libraries=places"></script>
 
 
   <footer id="footer">

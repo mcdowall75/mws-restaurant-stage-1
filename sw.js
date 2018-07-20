@@ -1,4 +1,9 @@
-var CACHE_NAME = 'mws-restaurant-stage-1-v3';
+importScripts('/js/idb.js');
+importScripts('/js/dbhelper.js');
+
+
+
+var CACHE_NAME = 'mws-restaurant-stage-1-v4';
 var urlsToCache = [
   './',
   '/css/styles.css',
@@ -7,20 +12,23 @@ var urlsToCache = [
   '/js/restaurant_info.js',
   '/js/dbhelper.js',
   '/js/idb.js',
+  '/img/network_wifi.svg',
+  '/img/no_wifi.svg',
   'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
   'https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2'
 ];
 
 /**
  * Install Event
- */
+*/
 self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(urlsToCache);
-    })
-  );
+    event.waitUntil(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+    );
 });
+
 
 /**
  * Remove unused Cache Versions
@@ -44,7 +52,7 @@ self.addEventListener('activate', function(event) {
 /**
  * Cache then Network
  */
-this.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request, {ignoreSearch: true}).then(function (response) {
       return response || fetch(event.request).then(function (response) {
@@ -62,9 +70,19 @@ this.addEventListener('fetch', function (event) {
   );
 });
 
+self.addEventListener('sync', function(event) {
+  if (event.tag == 'processReviews') {
+    event.waitUntil(
+      DBHelper.processReviews()
+    )
+  };
+});
+
+
 /**
  * Log Service Worker Errors.
  */
 self.onerror = function(message) {
   console.log(message);
 };
+
